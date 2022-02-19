@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recipe">Recipe</string>
+    <string name="favorite_recipe">Favorite Recipe</string>
+    <string name="food_joke">Food Joke</string>
+</resources>

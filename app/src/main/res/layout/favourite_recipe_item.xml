@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="favouriteRecipe"
+            type="com.printoverit.cookbookupdate.room.FavouriteEntity" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/favouriterecipeRowLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0sp"
+                android:layout_height="180dp"
+                app:cardCornerRadius="10sp"
+                android:layout_margin="5sp"
+                android:id="@+id/favouriteRecipeCarview"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/favourite_recipe_image"
+                        android:scaleType="centerCrop"
+                        loadImageFromUrl="@{favouriteRecipe.result.image}"
+                        android:src="@drawable/ic_favourite"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0sp"
+                        android:layout_height="0sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+
+                        app:layout_constraintStart_toEndOf="@+id/favourite_recipe_image"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/favourite_row_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@{favouriteRecipe.result.title}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:lines="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/favourite_row_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            htmlParse="@{favouriteRecipe.result.summary}"
+                            android:textColor="@color/black"
+                            android:textSize="11sp"
+                            android:lines="3"
+                            android:layout_margin="5sp"
+                            app:layout_constraintEnd_toEndOf="@+id/favourite_row_title"
+                            app:layout_constraintStart_toStartOf="@+id/favourite_row_title"
+                            app:layout_constraintTop_toBottomOf="@+id/favourite_row_title" />
+
+                        <ImageView
+                            android:id="@+id/favourite_row_likes_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/ic_heart"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/favourite_row_description"
+                            app:tint="@android:color/holo_red_dark" />
+
+                        <TextView
+                            android:id="@+id/favourite_row_likes_itext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="100"
+                            setNumberofLikes="@{favouriteRecipe.result.aggregateLikes}"
+                            android:layout_marginTop="5sp"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toEndOf="@+id/favourite_row_likes_image"
+                            app:layout_constraintStart_toStartOf="@+id/favourite_row_likes_image"
+                            app:layout_constraintTop_toBottomOf="@+id/favourite_row_likes_image" />
+
+                        <ImageView
+                            android:id="@+id/favourite_row_time_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/ic_fill_time"
+                            app:layout_constraintStart_toEndOf="@+id/favourite_row_likes_image"
+                            app:layout_constraintTop_toBottomOf="@+id/favourite_row_description"
+                            app:tint="@color/yellow" />
+
+                        <TextView
+                            android:id="@+id/favourite_row_time_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="10:25"
+                            setNumberofMinutes="@{favouriteRecipe.result.readyInMinutes}"
+                            android:layout_marginTop="5sp"
+                            android:textColor="@color/yellow"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toEndOf="@+id/favourite_row_time_image"
+                            app:layout_constraintStart_toStartOf="@+id/favourite_row_time_image"
+                            app:layout_constraintTop_toBottomOf="@+id/favourite_row_time_image" />
+
+                        <ImageView
+                            android:id="@+id/favourite_row_vegan_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:src="@drawable/ic_vegan"
+                            applyVeganColor="@{favouriteRecipe.result.vegan}"
+                            app:layout_constraintStart_toEndOf="@+id/favourite_row_time_image"
+                            app:layout_constraintTop_toTopOf="@+id/favourite_row_time_image"
+                            app:tint="@color/green" />
+
+                        <TextView
+                            android:id="@+id/favourite_row_vegan_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Vegan"
+                            applyVeganColor="@{favouriteRecipe.result.vegan}"
+                            android:layout_marginTop="5sp"
+                            android:textColor="@color/green"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toEndOf="@+id/favourite_row_vegan_image"
+                            app:layout_constraintStart_toStartOf="@+id/favourite_row_vegan_image"
+                            app:layout_constraintTop_toBottomOf="@+id/favourite_row_vegan_image" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
